@@ -27,3 +27,10 @@ def makeChange(coins, total):
     if table[total] == sys.maxsize:
         return -1
     return table[total]
+
+if __name__ == "__main__":
+    result1 = makeChange([1, 2, 25], 37)
+    result2 = makeChange([1256, 54, 48, 16, 102], 1453)
+
+    print("Result for [1, 2, 25] and total 37:", result1)
+    print("Result for [1256, 54, 48, 16, 102] and total 1453:", result2)
