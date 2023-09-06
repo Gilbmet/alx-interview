@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 '''Prime Game'''
 
-
 def isWinner(x, nums):
     '''finds the winner'''
     winnerCounter = {'Maria': 0, 'Ben': 0}
@@ -18,9 +17,16 @@ def isWinner(x, nums):
     else:
         return None
 
-
 def isRoundWinner(n, x):
     '''find round winner'''
+    def isPrime(num):
+        if num < 2:
+            return False
+        for i in range(2, int(num ** 0.5) + 1):
+            if num % i == 0:
+                return False
+        return True
+
     list = [i for i in range(1, n + 1)]
     players = ['Maria', 'Ben']
 
@@ -31,11 +37,11 @@ def isRoundWinner(n, x):
         prime = -1
         for idx, num in enumerate(list):
             # if already picked prime num then
-            # find if num is multipl of the prime num
+            # find if num is multiple of the prime num
             if prime != -1:
                 if num % prime == 0:
                     selectedIdxs.append(idx)
-            # else check is num is prime then pick it
+            # else check if num is prime then pick it
             else:
                 if isPrime(num):
                     selectedIdxs.append(idx)
@@ -51,16 +57,7 @@ def isRoundWinner(n, x):
                 del list[val - idx]
     return None
 
-
-def isPrime(n):
-    # 0, 1, even numbers greater than 2 are NOT PRIME
-    if n == 1 or n == 0 or (n % 2 == 0 and n > 2):
-        return False
-    else:
-        # Not prime if divisable by another number less
-        # or equal to the square root of itself.
-        # n**(1/2) returns square root of n
-        for i in range(3, int(n**(1/2))+1, 2):
-            if n % i == 0:
-                return "Not prime"
-        return True
+# Example usage
+x = 3
+nums = [4, 5, 1]
+print("Winner: {}".format(isWinner(x, nums)))
